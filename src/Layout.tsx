@@ -1,12 +1,13 @@
 import { useQueryErrorResetBoundary } from "@tanstack/react-query";
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
-import { TableErrorFallback } from "./components/error-boundary/table-error-fallback";
+import { StatsErrorFallback, TableErrorFallback } from "./components/error-boundary";
 import { StatusFilter } from "./components/filters/status-filter/status-filter";
 import { TypeFilter } from "./components/filters/type-filter/type-filter";
 import { Header } from "./components/header/header";
 import { SearchInput } from "./components/input/search-input";
-import { TableSkeleton } from "./components/skeletons/table-skeleton";
+import { StatsSkeleton, TableSkeleton } from "./components/skeletons";
+import { StatsSection } from "./components/stats-section";
 import { Surface } from "./components/surface/surface";
 import { TableDisplay } from "./components/table-display/table-display";
 import {
@@ -21,34 +22,44 @@ function LayoutContent() {
   const { setSearchTerm } = useFilterContext();
 
   return (
-    <Surface className="surface--full-width">
-      <div className="surface-content">
-        <div className="search-wrapper" style={{ marginBottom: "1rem" }}>
-          <SearchInput
-            onSearch={setSearchTerm}
-            placeholder="Search assets by name..."
-            debounceMs={500}
-          />
-        </div>
-        <div className="multiselect-filters__wrapper">
-          <div className="multiselect-filters__item">
-            <StatusFilter placeholder="Filter by status..." />
+    <>
+      <ErrorBoundary onReset={reset} fallbackRender={StatsErrorFallback}>
+        <Suspense fallback={<StatsSkeleton />}>
+          <AssetsDataProvider>
+            <StatsSection />
+          </AssetsDataProvider>
+        </Suspense>
+      </ErrorBoundary>
+
+      <Surface className="surface--full-width">
+        <div className="surface-content">
+          <div className="search-wrapper" style={{ marginBottom: "1rem" }}>
+            <SearchInput
+              onSearch={setSearchTerm}
+              placeholder="Search assets by name..."
+              debounceMs={500}
+            />
           </div>
-          <div className="multiselect-filters__item">
-            <TypeFilter placeholder="Filter by type..." />
+          <div className="multiselect-filters__wrapper">
+            <div className="multiselect-filters__item">
+              <StatusFilter placeholder="Filter by status..." />
+            </div>
+            <div className="multiselect-filters__item">
+              <TypeFilter placeholder="Filter by type..." />
+            </div>
+          </div>
+          <div className="table-container">
+            <ErrorBoundary onReset={reset} fallbackRender={TableErrorFallback}>
+              <Suspense fallback={<TableSkeleton rows={5} />}>
+                <AssetsDataProvider>
+                  <TableDisplay />
+                </AssetsDataProvider>
+              </Suspense>
+            </ErrorBoundary>
           </div>
         </div>
-        <div className="table-container">
-          <ErrorBoundary onReset={reset} fallbackRender={TableErrorFallback}>
-            <Suspense fallback={<TableSkeleton rows={5} />}>
-              <AssetsDataProvider>
-                <TableDisplay />
-              </AssetsDataProvider>
-            </Suspense>
-          </ErrorBoundary>
-        </div>
-      </div>
-    </Surface>
+      </Surface>
+    </>
   );
 }
 
