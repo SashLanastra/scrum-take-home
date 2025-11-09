@@ -26,7 +26,7 @@ export const TableDisplay = () => {
   const [rowData, setRowData] = useState<TTableDisplayRow[]>([]);
 
   useEffect(() => {
-    if (filteredAssets && filteredAssets.length > 0) {
+    if (filteredAssets) {
       setRowData(filteredAssets);
     }
   }, [filteredAssets]);

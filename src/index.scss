@@ -49,10 +49,15 @@ body {
     margin-left: auto;
     width: 50%;
     
-    // At medium screens: take up full width
     @media (max-width: 768px) {
       width: 100%;
       margin-left: 0;
+    }
+
+    @media (max-width: 576px) {
+      width: 100%;
+      margin-left: 0;
+      flex-direction: column;
     }
   }
   

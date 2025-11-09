@@ -6,12 +6,14 @@ import { useMockFetchAssets } from "../../api/assets/api/get-assets";
 type TAssetFilters = {
   statuses: EStatus[];
   types: EType[];
+  searchTerm: string;
 };
 
 // Context for filter state only (no data, no suspension)
 type TFilterContextValue = {
   filters: TAssetFilters;
   updateFilters: (filterKey: keyof TAssetFilters, values: EStatus[] | EType[]) => void;
+  setSearchTerm: (searchTerm: string) => void;
 };
 
 // Context for assets data (will suspend)
@@ -32,6 +34,7 @@ export const AssetsProvider = ({ children }: TAssetsProviderProps) => {
   const [filters, setFilters] = useState<TAssetFilters>({
     statuses: [],
     types: [],
+    searchTerm: "",
   });
 
   const updateFilters = useCallback(
@@ -44,12 +47,20 @@ export const AssetsProvider = ({ children }: TAssetsProviderProps) => {
     [],
   );
 
+  const setSearchTerm = useCallback((searchTerm: string) => {
+    setFilters((prev) => ({
+      ...prev,
+      searchTerm,
+    }));
+  }, []);
+
   const filterContextValue = useMemo(
     () => ({
       filters,
       updateFilters,
+      setSearchTerm,
     }),
-    [filters, updateFilters],
+    [filters, updateFilters, setSearchTerm],
   );
 
   return <FilterContext.Provider value={filterContextValue}>{children}</FilterContext.Provider>;
@@ -79,6 +90,11 @@ export const AssetsDataProvider = ({ children }: { children: ReactNode }) => {
 
     if (filters.types.length > 0) {
       filtered = filtered.filter((asset) => filters.types.includes(asset.type));
+    }
+
+    if (filters.searchTerm) {
+      const searchLower = filters.searchTerm.toLowerCase();
+      filtered = filtered.filter((asset) => asset.name.toLowerCase().includes(searchLower));
     }
 
     return filtered;
