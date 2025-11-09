@@ -1,0 +1,18 @@
+.ag-header-cell-text, .ag-header-group-text {
+    overflow: visible;
+    text-overflow: unset;
+}
+
+.table-display-wrapper {
+    // Center badge cells vertically
+    .ag-cell {
+        display: flex;
+        align-items: center;
+    }
+
+    // Center type and status columns horizontally
+    .ag-cell[col-id="type"],
+    .ag-cell[col-id="status"] {
+        justify-content: flex-start;
+    }
+}

@@ -1,0 +1,183 @@
+.item-picker {
+  width: 100%;
+  max-width: 280px;
+
+  // Trigger button styling
+  &__trigger {
+    width: 100%;
+    justify-content: space-between;
+    min-height: 40px;
+    height: auto;
+    padding: 8px 12px;
+    text-transform: none;
+    display: flex;
+    align-items: center;
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+
+  &__trigger-content {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-wrap: wrap;
+    flex: 1;
+    min-width: 0;
+  }
+
+  // Chip (Badge) styling
+  &__chip {
+    gap: 4px;
+    padding-right: 6px;
+    max-width: 100px;
+
+    .MuiChip-label {
+      padding-left: 8px;
+      padding-right: 4px;
+    }
+  }
+
+  &__chip-label {
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__chip-delete-icon {
+    width: 12px;
+    height: 12px;
+    margin-left: 4px;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.2);
+      border-radius: 2px;
+    }
+  }
+
+  // Placeholder styling
+  &__placeholder {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  // Chevron icon
+  &__chevron {
+    flex-shrink: 0;
+    transition: transform 200ms ease-in-out;
+    transform: rotate(0deg);
+
+    &--open {
+      transform: rotate(180deg);
+    }
+  }
+
+  // Popover styling
+  &__popover-paper {
+    width: 320px;
+    padding: 0;
+    max-height: 384px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__popover-content {
+    display: flex;
+    flex-direction: column;
+    max-height: 384px;
+  }
+
+  // Header styling
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  }
+
+  &__title {
+    font-weight: 600;
+    font-size: 14px;
+    margin: 0;
+  }
+
+  &__header-buttons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__header-button {
+    height: 32px;
+    padding: 0 8px;
+    font-size: 12px;
+    text-transform: none;
+  }
+
+  // List styling
+  &__list {
+    flex: 1;
+    overflow: auto;
+  }
+
+  &__list-inner {
+    padding: 4px;
+  }
+
+  &__list-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 150ms ease;
+    width: 100%;
+    border: none;
+    background: transparent;
+    text-align: left;
+    font-family: inherit;
+    font-size: inherit;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.04);
+    }
+
+    &.selected {
+      background-color: rgba(0, 0, 0, 0.08);
+    }
+
+    &:focus-visible {
+      outline: 2px solid rgba(25, 118, 210, 0.5);
+      outline-offset: -2px;
+    }
+  }
+
+  &__list-item-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  // Empty state
+  &__empty {
+    padding: 16px;
+    text-align: center;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  // Footer styling
+  &__footer {
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+    padding: 12px;
+  }
+
+  // Tooltip item
+  &__tooltip-item {
+    font-size: 14px;
+  }
+}
+
