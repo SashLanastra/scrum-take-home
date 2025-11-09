@@ -10,6 +10,14 @@
     grid-column: 1 / -1;
   }
 
+  @media (max-width: 768px) {
+    padding: 16px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 12px;
+  }
+
   &--half-width {
     grid-column: 1 / 2;
   }

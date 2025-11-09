@@ -4,6 +4,7 @@ import { useAssetsContext } from "../../context/hooks/assets-hook";
 import { PieChart } from "../charts/pie-chart";
 import { Surface } from "../surface/surface";
 import "./stats-section.scss";
+import { formattedTotal } from "../../utils";
 
 export const StatsSection = () => {
   const { filteredAssets } = useAssetsContext();
@@ -12,12 +13,7 @@ export const StatsSection = () => {
     return filteredAssets.reduce((sum, asset) => sum + asset.value, 0);
   }, [filteredAssets]);
 
-  const formattedTotal = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  }).format(totalValue);
+  const formattedTotalValue = formattedTotal(totalValue);
 
   return (
     <Surface className="stats-section-surface">
@@ -30,7 +26,7 @@ export const StatsSection = () => {
             <h3 className="stats-card__title">Total Asset Value</h3>
           </div>
           <div className="stats-card__content">
-            <div className="stats-card__value">{formattedTotal}</div>
+            <div className="stats-card__value">{formattedTotalValue}</div>
             <div className="stats-card__subtitle">
               Across {filteredAssets.length} {filteredAssets.length === 1 ? "asset" : "assets"}
             </div>

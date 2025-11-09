@@ -6,6 +6,11 @@
   line-height: 0;
 }
 
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
 body {
   background-color: #f5f5f5;
 }
@@ -19,6 +24,14 @@ body {
     align-items: center;
     justify-content: center;
     padding: 24px;
+
+    @media (max-width: 768px) {
+      padding: 16px;
+    }
+
+    @media (max-width: 480px) {
+      padding: 12px;
+    }
   }
   
 
@@ -32,6 +45,7 @@ body {
     // Responsive: single column on mobile/tablet
     @media (max-width: 768px) {
       grid-template-columns: 1fr;
+      gap: 16px;
     }
   }
 }
@@ -40,6 +54,10 @@ body {
   display: flex;
   flex-direction: column;
   gap: 24px;
+
+  @media (max-width: 768px) {
+    gap: 16px;
+  }
 }
 
 .multiselect-filters {
@@ -68,4 +86,10 @@ body {
 
 .table-container {
   width: 100%;
+  overflow-x: auto;
+  
+  @media (max-width: 768px) {
+    // Ensure table scrolls on mobile instead of overflowing
+    -webkit-overflow-scrolling: touch;
+  }
 }

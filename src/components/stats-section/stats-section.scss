@@ -7,9 +7,18 @@
   grid-template-columns: 1fr;
   gap: 32px;
   width: 100%;
+  overflow: hidden;
 
   @media (min-width: 768px) {
     grid-template-columns: 1fr 1fr;
+  }
+
+  @media (max-width: 768px) {
+    gap: 24px;
+  }
+
+  @media (max-width: 480px) {
+    gap: 16px;
   }
 }
 
@@ -21,6 +30,16 @@
   padding: 24px;
   border-radius: 12px;
   min-height: 200px;
+
+  @media (max-width: 768px) {
+    padding: 16px;
+    gap: 16px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 12px;
+    gap: 12px;
+  }
 }
 
 .stats-card {
@@ -72,6 +91,14 @@
     font-weight: 700;
     line-height: 1.2;
     letter-spacing: -0.02em;
+
+    @media (max-width: 768px) {
+      font-size: 36px;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 32px;
+    }
   }
 
   &__subtitle {
@@ -95,6 +122,16 @@
   border-radius: 12px;
   border: 1px solid #e5e7eb;
   min-height: 200px;
+
+  @media (max-width: 768px) {
+    padding: 12px;
+    gap: 12px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 8px;
+    gap: 8px;
+  }
 }
 
 .chart-title {
@@ -112,9 +149,24 @@
   max-height: 300px;
   padding: 16px;
 
+  @media (max-width: 768px) {
+    padding: 8px;
+    min-height: 200px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 4px;
+    min-height: 180px;
+  }
+
   canvas {
     max-width: 250px !important;
     max-height: 250px !important;
+
+    @media (max-width: 480px) {
+      max-width: 200px !important;
+      max-height: 200px !important;
+    }
   }
 }
 

@@ -1,7 +1,7 @@
 import { useQueryErrorResetBoundary } from "@tanstack/react-query";
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
-import { StatsErrorFallback, TableErrorFallback } from "./components/error-boundary";
+import { ErrorBoundaryFallback } from "./components/error-boundary/error-boundary-fallback";
 import { StatusFilter } from "./components/filters/status-filter/status-filter";
 import { TypeFilter } from "./components/filters/type-filter/type-filter";
 import { Header } from "./components/header/header";
@@ -23,7 +23,7 @@ function LayoutContent() {
 
   return (
     <>
-      <ErrorBoundary onReset={reset} fallbackRender={StatsErrorFallback}>
+      <ErrorBoundary onReset={reset} fallbackRender={ErrorBoundaryFallback}>
         <Suspense fallback={<StatsSkeleton />}>
           <AssetsDataProvider>
             <StatsSection />
@@ -49,7 +49,7 @@ function LayoutContent() {
             </div>
           </div>
           <div className="table-container">
-            <ErrorBoundary onReset={reset} fallbackRender={TableErrorFallback}>
+            <ErrorBoundary onReset={reset} fallbackRender={ErrorBoundaryFallback}>
               <Suspense fallback={<TableSkeleton rows={5} />}>
                 <AssetsDataProvider>
                   <TableDisplay />

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useAssetsContext } from "../../context/hooks/assets-hook";
 import type { TTableDisplayRow } from "./table-display.types";
 import "./table-display.scss";
+import { formattedTotal } from "../../utils";
 import { CustomBadge } from "../badges/custom-badge";
 import { statusColors, typeColors } from "../badges/helpers";
 
@@ -41,6 +42,10 @@ export const TableDisplay = () => {
       field: "value",
       headerName: "Value",
       minWidth: 100,
+      cellRenderer: (params: ICellRendererParams<TTableDisplayRow>) => {
+        if (!params.data?.value) return null;
+        return <div className="table-display__value">{formattedTotal(params.data?.value)}</div>;
+      },
     },
     {
       field: "type",
