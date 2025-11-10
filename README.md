@@ -19,7 +19,11 @@ A production-ready React application for managing and visualizing asset portfoli
 - **Fault Isolation**: Each feature boundary is isolated to prevent cascading failures
 
 ### UI Components
-- **MUI Component Library**: All custom components built on Material-UI foundations for consistency and accessibility
+- **MUI Component Library**: All custom components built on Material-UI foundations for consistency and built-in accessibility features including:
+  - ARIA attributes and keyboard navigation support out of the box
+  - Screen reader compatibility for all interactive elements
+  - Proper focus management and semantic HTML structure
+  - WCAG 2.1 compliant color contrast ratios
 - **AG Grid Integration**: Data table implemented with AG Grid for enhanced performance, advanced sorting/filtering, and enterprise-grade UX
 - **Responsive Design**: Mobile-first approach with adaptive layouts
 
