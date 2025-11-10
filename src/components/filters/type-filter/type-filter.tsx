@@ -14,7 +14,7 @@ type TTypeItem = {
 };
 
 export const TypeFilter = ({
-  placeholder = "Filter by type...",
+  placeholder = "Type Filter",
   title = "Filter by type",
 }: TTypeFilterProps) => {
   const { filters, updateFilters } = useFilterContext();

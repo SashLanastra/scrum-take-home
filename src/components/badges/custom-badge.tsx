@@ -1,5 +1,6 @@
 import { IconButton } from "@mui/material";
 import type { MouseEvent, ReactNode } from "react";
+import "./custom-badge.scss";
 
 export const CustomBadge = ({
   deleteIcon,
@@ -18,25 +19,22 @@ export const CustomBadge = ({
 }) => {
   return (
     <span
+      className="custom-badge"
       style={{
-        display: "inline-flex",
-        alignItems: "center",
-        justifyContent: "center",
         backgroundColor: backgroundColor ?? "CCCCCC",
         color: color ?? "FFFFFF",
-        padding: "4px 12px",
-        borderRadius: "16px",
-        fontSize: "0.8125rem",
-        fontWeight: 500,
-        lineHeight: "1.5",
-        whiteSpace: "nowrap",
-        gap: "4px",
       }}
     >
-      {text && text}
-      {icon && icon}
+      {text && <span>{text}</span>}
+      {icon && <span>{icon}</span>}
       {deleteIcon && (
-        <IconButton size="small" onClick={onDelete}>
+        <IconButton
+          size="small"
+          onClick={(e) => {
+            e.stopPropagation();
+            onDelete?.(e);
+          }}
+        >
           {deleteIcon}
         </IconButton>
       )}

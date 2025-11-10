@@ -43,7 +43,7 @@ export const PieChart = () => {
     datasets: [
       {
         data: typeData.values,
-        backgroundColor: typeData.types.map((type) => typeColors[type].backgroundColor),
+        backgroundColor: typeData.types.map((type) => typeColors[type].border),
         borderColor: "#ffffff",
         borderWidth: 2,
       },
@@ -55,14 +55,21 @@ export const PieChart = () => {
     maintainAspectRatio: true,
     plugins: {
       legend: {
+        display: true,
         position: "bottom",
+        align: "center",
         labels: {
           padding: 15,
           font: {
             size: 13,
             weight: 500,
           },
+          usePointStyle: true,
+          pointStyle: "circle",
+          boxWidth: 8,
+          boxHeight: 8,
         },
+        maxHeight: 60,
       },
       tooltip: {
         enabled: true,

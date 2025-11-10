@@ -42,10 +42,10 @@ function LayoutContent() {
           </div>
           <div className="multiselect-filters__wrapper">
             <div className="multiselect-filters__item">
-              <StatusFilter placeholder="Filter by status..." />
+              <StatusFilter placeholder="Status Filter" />
             </div>
             <div className="multiselect-filters__item">
-              <TypeFilter placeholder="Filter by type..." />
+              <TypeFilter placeholder="Type Filter" />
             </div>
           </div>
           <div className="table-container">

@@ -9,7 +9,12 @@ type TCheckboxProps = Omit<CheckboxProps, "onChange"> & {
 
 export const CheckBox = ({ label, onCheckedChange, checked, ...props }: TCheckboxProps) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    event.stopPropagation();
     onCheckedChange?.(event.target.checked);
+  };
+
+  const handleClick = (event: React.MouseEvent) => {
+    event.stopPropagation();
   };
 
   if (label) {
@@ -17,6 +22,7 @@ export const CheckBox = ({ label, onCheckedChange, checked, ...props }: TCheckbo
       <FormControlLabel
         control={<MuiCheckbox checked={checked} onChange={handleChange} {...props} />}
         label={label}
+        onClick={handleClick}
       />
     );
   }
